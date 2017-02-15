@@ -1,4 +1,4 @@
-Queria reproduzir o menu de abas do WhatsApp no Browser para a produÁ„o de PWA ou Apps Hibridos.
+Queria reproduzir o menu de abas do WhatsApp no Browser para a produ√ß√£o de PWA ou Apps Hibridos.
 
 
 
@@ -12,13 +12,9 @@ Live Demo:
 http://gabrieldarezzo.github.io/menuTouch/
 
 
-Encontrei alguns carinhas legais  
+Update:
+Falta apenas a barra abaixo e alguns ajustes (no clique direto ao inv√©s do swipe)
 
 
 Utilizar, para a barra abaixo dos menus.  
 https://sergiolopes.github.io/shopping/lojas.html  
-
-Proximos passos  
-Retirar jQuery!  
-
-Pedir um help pro mano @LucasLLLS
