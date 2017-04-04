@@ -1,0 +1,129 @@
+<!doctype html>
+<html ng-app="App">
+  <head>	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	
+	
+	<title>Tabs-Menu (MaterializeCss) with suport touch/Drag (Angular 1.x)</title>
+	<link rel='shortcut icon' href="icon2.png">
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+	
+	<style type="text/css">
+		.full-pg{
+			height: 400px;		
+		}
+		
+	</style>
+
+</head>
+<body >
+	<div class="container" ng-controller="ctrl">  
+		
+		
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s3"><a href="#recados">Recados (1)</a></li>
+					<li class="tab col s3"><a class="active" href="#avisos">Avisos (2)</a></li>					
+					<li class="tab col s3"><a href="#eventos">Eventos(3)</a></li>
+				</ul>
+			</div>
+			<div id="recados" class="col s12 full-pg" ng-swipe-right="moveToRight(this)" ng-swipe-left="moveToLeft(this)">Test 1</div>
+			<div id="avisos"  class="col s12 full-pg" ng-swipe-right="moveToRight(this)" ng-swipe-left="moveToLeft(this)">Test 2</div>			
+			<div id="eventos" class="col s12 full-pg" ng-swipe-right="moveToRight(this)" ng-swipe-left="moveToLeft(this)">Test 4</div>
+		</div>
+        
+
+
+	</div>
+	
+	
+	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="node_modules/angular-touch/angular-touch.js"></script>	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
+			
+			
+			
+		/*
+		var positionActual = 0;		
+		var menusArr = [];		
+		$( "#menu-modulos li a" ).each(function(i) {
+			
+			var auxHref = $(this).attr('href');
+			menusArr.push(auxHref);
+		});
+		*/
+		
+		var positionActual = 0;				
+		var menusArr = ["recados", "avisos", "eventos"];
+		
+		angular.module('App', ['ngTouch'])
+		.controller('ctrl', ['$scope', function($scope) { 
+		
+		
+			$scope.moveToLeft = function ($event) {				
+				
+				console.log('Movendo para a Esquerda');
+			
+				var el = event.target;
+				
+				
+				var idAtualEl = $(el).attr('id');
+				var indexOfMenu = menusArr.indexOf(idAtualEl);
+				
+				if(indexOfMenu - 1 == menusArr.length){
+					return false;
+				}
+				
+				positionActual = positionActual - 1;				
+				var mv = menusArr[indexOfMenu - 1];
+				$('ul.tabs').tabs('select_tab', mv);
+			}
+			
+			$scope.moveToRight = function ($event) {							
+				console.log('Movendo para a Direita');
+				
+				var el = event.target;
+				
+				console.log(el);
+				
+				var idAtualEl = $(el).attr('id');
+				var indexOfMenu = menusArr.indexOf(idAtualEl);
+				
+				//console.log(idAtualEl);
+				
+				
+				console.log(indexOfMenu);
+				
+				/*
+				if(indexOfMenu + 1 == menusArr.length){
+					return false;
+				}
+				*/
+				
+				
+				positionActual = positionActual + 1;
+				
+				var mv = menusArr[indexOfMenu - 1];
+				$('ul.tabs').tabs('select_tab', mv);
+				
+				
+			}
+			
+		}]);
+		</script>
+	
+	</script>
+  
+</body>
+</html>
